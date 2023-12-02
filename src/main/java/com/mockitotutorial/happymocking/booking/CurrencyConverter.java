@@ -7,5 +7,8 @@ public class CurrencyConverter {
 	public static double toEuro(double dollarAmount) {
 		return dollarAmount * USD_TO_EUR_RATE; 
 	}
-	
+
+	private CurrencyConverter() {
+		throw new IllegalStateException("Utility class");
+	}
 }

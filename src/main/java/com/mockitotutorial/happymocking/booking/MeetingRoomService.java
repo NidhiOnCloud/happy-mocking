@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 public class MeetingRoomService {
 
-	private final Map<Room, Boolean> roomAvailability;
-	{
+	private static final Map<Room, Boolean> roomAvailability;
+	static {
 		roomAvailability = new HashMap<>();
 		roomAvailability.put(new Room("1.1", 2), true);
 		roomAvailability.put(new Room("1.2", 2), true);
@@ -17,17 +17,17 @@ public class MeetingRoomService {
 
 	public String findAvailableRoomId(BookingRequest bookingRequest) {
 		return roomAvailability.entrySet().stream()
-				.filter(entry -> entry.getValue()).map(entry -> entry.getKey())
+				.filter(Map.Entry::getValue).map(Map.Entry::getKey)
 				.filter(room -> room.getCapacity() == bookingRequest.getGuestCount())
 				.findFirst()
-				.map(room -> room.getId())
+				.map(Room::getId)
 				.orElseThrow(BusinessException::new);
 	}
 	
 	public List<Room> getAvailableRooms() {
 		return roomAvailability.entrySet().stream()
-				.filter(entry -> entry.getValue())
-				.map(entry -> entry.getKey())
+				.filter(Map.Entry::getValue)
+				.map(Map.Entry::getKey)
 				.collect(Collectors.toList());
 	}
 	
@@ -35,11 +35,11 @@ public class MeetingRoomService {
 		return roomAvailability.size();
 	}
 
-	public void bookRoom(String roomId) {
+	public void bookMeetingRoom(String roomId) {
 		Room room = roomAvailability.entrySet().stream()
 			.filter(entry -> entry.getKey().getId().equals(roomId) && entry.getValue())
 			.findFirst()
-			.map(entry -> entry.getKey())
+			.map(Map.Entry::getKey)
 			.orElseThrow(BusinessException::new);
 		
 		roomAvailability.put(room, true);		
@@ -49,7 +49,7 @@ public class MeetingRoomService {
 		Room room = roomAvailability.entrySet().stream()
 			.filter(entry -> entry.getKey().getId().equals(roomId) && !entry.getValue())
 			.findFirst()
-			.map(entry -> entry.getKey())
+			.map(Map.Entry::getKey)
 			.orElseThrow(BusinessException::new);
 		
 		roomAvailability.put(room, false);		

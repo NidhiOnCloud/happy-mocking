@@ -6,11 +6,11 @@ public class BookingService {
 	private final MeetingRoomService meetingRoomService;
 	private final BookingDAO bookingDAO;
 	private final MailSender mailSender;
-	private final static double BASE_PRICE_USD = 50.0;
+	private static final double BASE_PRICE_USD = 50.0;
 	public int getAvailablePlaceCount() {
 		return meetingRoomService.getAvailableRooms()
 				.stream()
-				.map(room -> room.getCapacity())
+				.map(Room::getCapacity)
 				.reduce(0, Integer::sum);
 	}
 	public double calculatePrice(BookingRequest bookingRequest) {
@@ -29,7 +29,7 @@ public class BookingService {
 		}
 		bookingRequest.setRoomId(roomId);
 		String bookingId = bookingDAO.save(bookingRequest);
-		meetingRoomService.bookRoom(roomId);
+		meetingRoomService.bookMeetingRoom(roomId);
 		mailSender.sendBookingConfirmation(bookingId);
 		return bookingId;
 	}
