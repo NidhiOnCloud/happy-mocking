@@ -10,17 +10,17 @@ import static org.mockito.Mockito.mock;
 
 public class BookingServiceTest {
     private  PaymentService paymentServiceMock;
-    private  RoomService roomServiceMock;
+    private MeetingRoomService meetingRoomServiceMock;
     private  BookingDAO bookingDAOMock;
     private  MailSender mailSenderMock;
     private BookingService bookingService;
     @BeforeEach
     void setUp(){
         this.paymentServiceMock = mock(PaymentService.class);
-        this.roomServiceMock = mock(RoomService.class);
+        this.meetingRoomServiceMock = mock(MeetingRoomService.class);
         this.bookingDAOMock = mock(BookingDAO.class);
         this.mailSenderMock = mock(MailSender.class);
-        this.bookingService = new BookingService(paymentServiceMock,roomServiceMock,bookingDAOMock,mailSenderMock);
+        this.bookingService = new BookingService(paymentServiceMock, meetingRoomServiceMock,bookingDAOMock,mailSenderMock);
     }
     @Test
     void calculatePriceTest() {

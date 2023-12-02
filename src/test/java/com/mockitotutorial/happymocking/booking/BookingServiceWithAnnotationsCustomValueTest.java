@@ -15,16 +15,16 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class BookingServiceWithAnnotationsCustomValueTest {
     @Mock
-    private  RoomService roomServiceMock;
+    private MeetingRoomService meetingRoomServiceMock;
     @InjectMocks
     private BookingService bookingService;
 
     @Test
     void should_CountAvailablePlaces_When_OneRoomAvailable() {
-        List<Room> availableRooms = roomServiceMock.getAvailableRooms();
+        List<Room> availableRooms = meetingRoomServiceMock.getAvailableRooms();
         System.out.println(availableRooms); // mock by default return empty collection if the return type is a collection.
         //given
-        when(roomServiceMock.getAvailableRooms()).thenReturn(Collections.singletonList(new Room("Room 1",5)));
+        when(meetingRoomServiceMock.getAvailableRooms()).thenReturn(Collections.singletonList(new Room("Room 1",5)));
         int expected = 5;
         //when
         int actual = bookingService.getAvailablePlaceCount();
@@ -35,7 +35,7 @@ public class BookingServiceWithAnnotationsCustomValueTest {
     @Test
     void should_CountAvailablePlaces_When_MoreThanOneRoomAvailable() {
         //given
-        when(roomServiceMock.getAvailableRooms())
+        when(meetingRoomServiceMock.getAvailableRooms())
                 .thenReturn(Arrays.asList(new Room("Room 1",2), new Room("Room 2",5)));
         int expected = 7;
         //when

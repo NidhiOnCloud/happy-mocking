@@ -16,13 +16,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class BookingServiceWithAnnotationsMultipleThenReturnTest {
     @Mock
-    private  RoomService roomServiceMock;
+    private MeetingRoomService meetingRoomServiceMock;
     @InjectMocks
     private BookingService bookingService;
     @Test
     void should_CountAvailablePlaces_When_CalledMultipleTimes() {
         //given
-        when(roomServiceMock.getAvailableRooms())
+        when(meetingRoomServiceMock.getAvailableRooms())
                 .thenReturn(Arrays.asList(new Room("Room 1",5),new Room("Room 2",2)))
                 .thenReturn(Collections.<Room>emptyList());
         int expectedFirst = 7;

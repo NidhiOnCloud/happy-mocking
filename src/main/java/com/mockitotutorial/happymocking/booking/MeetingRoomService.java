@@ -3,7 +3,7 @@ package com.mockitotutorial.happymocking.booking;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class RoomService {
+public class MeetingRoomService {
 
 	private final Map<Room, Boolean> roomAvailability;
 	{
@@ -45,7 +45,7 @@ public class RoomService {
 		roomAvailability.put(room, true);		
 	}
 	
-	public void unbookRoom(String roomId) {
+	public void unBookMeetingRoom(String roomId) {
 		Room room = roomAvailability.entrySet().stream()
 			.filter(entry -> entry.getKey().getId().equals(roomId) && !entry.getValue())
 			.findFirst()
