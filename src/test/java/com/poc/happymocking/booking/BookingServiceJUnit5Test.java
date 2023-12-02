@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
-public class BookingServiceTest {
+public class BookingServiceJUnit5Test {
     private  PaymentService paymentServiceMock;
     private MeetingRoomService meetingRoomServiceMock;
     private  BookingDAO bookingDAOMock;
