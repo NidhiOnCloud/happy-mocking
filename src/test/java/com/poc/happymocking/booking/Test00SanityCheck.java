@@ -1,4 +1,4 @@
-package com.mockitotutorial.happymocking.booking;
+package com.poc.happymocking.booking;
 
 import org.junit.jupiter.api.Test;
 

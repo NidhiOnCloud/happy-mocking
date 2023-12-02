@@ -1,27 +1,16 @@
-package com.mockitotutorial.happymocking.booking;
+package com.poc.happymocking.booking;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-
-public class BookingServiceTest {
-    private  PaymentService paymentServiceMock;
-    private MeetingRoomService meetingRoomServiceMock;
-    private  BookingDAO bookingDAOMock;
-    private  MailSender mailSenderMock;
+@ExtendWith(MockitoExtension.class)
+public class BookingServiceWithAnnotationsTest {
+    @InjectMocks
     private BookingService bookingService;
-    @BeforeEach
-    void setUp(){
-        this.paymentServiceMock = mock(PaymentService.class);
-        this.meetingRoomServiceMock = mock(MeetingRoomService.class);
-        this.bookingDAOMock = mock(BookingDAO.class);
-        this.mailSenderMock = mock(MailSender.class);
-        this.bookingService = new BookingService(paymentServiceMock, meetingRoomServiceMock,bookingDAOMock,mailSenderMock);
-    }
+
     @Test
     void calculatePriceTest() {
         //given
@@ -44,6 +33,4 @@ public class BookingServiceTest {
         //then
         assertEquals(actual,expected);
     }
-
-
 }
