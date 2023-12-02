@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class BookingServiceThrowingExceptionTest {
+class BookingServiceThrowingExceptionTest {
     @InjectMocks
     private BookingService bookingService;
 
